@@ -15,8 +15,18 @@ class FileReader {
     /**
      * Read a file, store and return its content
      * @param $file String
+     * @return file's content
      */
     public function readFile($file){
+        $lines = '';
+        $file_handle = fopen($file, "r");
+        while (!feof($file_handle)) {
+            $line = fgets($file_handle);
+            $lines = $lines . $line;
+        }
+        fclose($file_handle);
+        return $lines;
+    }
 
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
