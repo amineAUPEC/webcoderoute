@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code de la route</title>
+</head>
+<body>
+
+<div>
+    <h2>Questions</h2>
+    <form method="GET" id="formCode">
+        <div id="questionText"></div>
+    </form>
+        <div id="counterMark"></div>
+        <div id="answerText"></div>
+    <button id="next">Next</button>
+
+
+</div>
+
+<script src="js/libs/handlebars-v1.3.0.js"></script>
+<script src="js/functions.js"></script>
+<script>
+    // wait until the doc is loaded
+    window.onload = function(){
+        var sync = false;
+        var result = 0;
+        var count = 0; // store mark
+        var form = document.getElementById("formCode");
+        var counterMark = document.getElementById("counterMark");
+        var questionText = document.getElementById('questionText');
+        var answerText = document.getElementById("answerText");
+        var next = document.getElementById('next');
+
+        var question = getQuestion(count, sync); // retrieves first question
+        var answer = getAnswer(count, sync); // retrieves first answer
+
+        questionText.innerHTML = question;
+        answerText.innerHTML = answer;
+
+
+        //Go to the next question / answer
+        next.onclick = function(){
+            count++;
+            question = getQuestion(count, sync);
+            answer = getAnswer(count, sync);
+            questionText.innerHTML = question;
+            answerText.innerHTML = answer;
+        };
+
+    }
+</script>
+</body>
+</html>
