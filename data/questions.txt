@@ -1,0 +1,10 @@
+﻿1ahahah ah1 ; un ; deux ; trois
+2aahah ah2 ; un ; deux ; trois2
+3aahah ah1 ; un ; deux ; trois
+4aah ah1 ; un ; deux ; trois
+5ahahah ah1 ; un ; deux ; trois
+6aahah ah2 ; un ; deux ; trois
+7aahah ah1 ; un ; deux ; trois
+8aah ah1 ; un ; deux ; trois
+9ahahah ah1 ; un ; deux ; trois
+10aahah ah2 ; un ; deux ; trois
