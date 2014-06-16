@@ -27,7 +27,28 @@ function getXMLHttpRequest() {
     return xhr;
 }
 
-function getAnswer(idAnswer){
+function getAnswer(idAnswer, sync){
+    var answer ='';
     var xhr = getXMLHttpRequest();
-    xhr.open("GET", "")
+    xhr.open("GET", "getAnswer.php?idAnswer="+idAnswer, sync);
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            answer = xhr.responseText;
+        }
+    };
+    xhr.send(null);
+    return answer;
+}
+
+function getQuestion(idQuestion, sync){
+    var question ='';
+    var xhr = getXMLHttpRequest();
+    xhr.open("GET", "getQuestion.php?idQuestion="+idQuestion, sync);
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            question = xhr.responseText;
+        }
+    }
+    xhr.send(null);
+    return question;
 }
