@@ -28,12 +28,20 @@ class FileReader {
         return $lines;
     }
 
+    /**
+     * Return a file as array
+     * @param $file
+     * @return array
+     */
+    public function readFileToArray($file){
+        $array = array();
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
             $line = fgets($file_handle);
-            echo $line;
+            array_push($array, $line);
         }
         fclose($file_handle);
+        return $array;
     }
 
 } 
