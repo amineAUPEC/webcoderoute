@@ -34,14 +34,8 @@ class FileReader {
      * @return array
      */
     public function readFileToArray($file){
-        $array = array();
-        $file_handle = fopen($file, "r");
-        while (!feof($file_handle)) {
-            $line = fgets($file_handle);
-            array_push($array, $line);
-        }
-        fclose($file_handle);
-        return $array;
+        file($file, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+        return file($file, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);;
     }
 
 } 
