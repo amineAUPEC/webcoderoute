@@ -6,8 +6,7 @@
  * Time: 00:00
  */
 // ref to questions and answers file
-const ANSWERS_FILE = "data/bonne_reponse.txt";
-const QUESTIONS_FILE = "data/questions.txt";
+include_once('constantes.php');
 include_once('FileReader.php');
 
 function getAnswers(){
