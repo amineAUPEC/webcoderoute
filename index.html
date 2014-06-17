@@ -6,36 +6,46 @@
 <body>
 
 <div>
-    <h2>Questions</h2>
-    <form method="GET" id="formCode">
+    <h2>Questions - <span id="idQuestion"></span></h2>
+    <form method="GET" id="formCode" onsubmit="return false;">
         <div id="questionText"></div>
+        <div id="reps">
+            <input type="radio" name="rep" id="repA" value="A"><label for="repA"></label><br />
+            <input type="radio" name="rep" id="repB" value="B"><label for="repB"></label><br />
+            <input type="radio" name="rep" id="repC" value="C"><label for="repC"></label><br />
+        </div>
+        <input type="submit" id="next">
     </form>
-        <div id="counterMark"></div>
-        <div id="answerText"></div>
-    <button id="next">Next</button>
-
+    <div>Note : <span id="counterMark"></span></div>
 
 </div>
 
-<script src="js/libs/handlebars-v1.3.0.js"></script>
 <script src="js/functions.js"></script>
 <script>
+
     // wait until the doc is loaded
     window.onload = function(){
-        var sync = false;
-        var result = 0;
-        var count = 0; // store mark
-        var form = document.getElementById("formCode");
-        var counterMark = document.getElementById("counterMark");
-        var questionText = document.getElementById('questionText');
-        var answerText = document.getElementById("answerText");
-        var next = document.getElementById('next');
+        sync = false;
+        result = 0;
+        count = 0; // store mark
+        repA = document.getElementById('repA');
+        repB = document.getElementById('repB');
+        repC = document.getElementById('repC');
+        form = document.getElementById("formCode");
+        counterMark = document.getElementById("counterMark");
+        questionText = document.getElementById('questionText');
+        questionsCount = getQuestionsCount(sync);
+        mark = 0;
 
-        var question = getQuestion(count, sync); // retrieves first question
-        var answer = getAnswer(count, sync); // retrieves first answer
+        var button = document.getElementById('next');
+        next();
 
-        questionText.innerHTML = question;
-        answerText.innerHTML = answer;
+        button.onclick = function(){
+            var userAnswer = document.querySelector('input[name="rep"]:checked').value;
+            next(userAnswer);
+        }
+
+    }
 
     function getLabels(){
         var labels = document.getElementsByTagName('LABEL');
@@ -49,15 +59,25 @@
         return labels;
     }
 
-        //Go to the next question / answer
-        next.onclick = function(){
-            count++;
-            question = getQuestion(count, sync);
-            answer = getAnswer(count, sync);
-            questionText.innerHTML = question;
-            answerText.innerHTML = answer;
-        };
+    function next(userAnswer){
 
+        if(count < questionsCount){
+            var answer = getAnswer(count, sync); // retrieves answer
+            var idQuestion = document.getElementById('idQuestion');
+            var labels = getLabels();
+            console.log(userAnswer);
+            if(userAnswer == getAnswer(count)){
+                mark++;
+            }
+
+            var question = JSON.parse(getQuestion(count, sync));
+            questionText.innerHTML = question.text;
+            repA.label.innerHTML = question.repA;
+            repB.label.innerHTML = question.repB;
+            repC.label.innerHTML = question.repC;
+            idQuestion.innerHTML = ++count;
+            counterMark.innerHTML = mark+'/'+questionsCount;
+        }
     }
 </script>
 </body>
