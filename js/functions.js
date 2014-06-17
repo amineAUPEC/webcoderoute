@@ -52,3 +52,16 @@ function getQuestion(idQuestion, sync){
     xhr.send(null);
     return question;
 }
+
+function getQuestionsCount(sync){
+    var line ='';
+    var xhr = getXMLHttpRequest();
+    xhr.open("GET", "getQuestionsCount.php", sync);
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            line = xhr.responseText;
+        }
+    }
+    xhr.send(null);
+    return line;
+}
