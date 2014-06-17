@@ -19,11 +19,13 @@ if($idQuestion != null){
     }
     else{
         $fileReader = new \utilities\FileReader;
-
         $questions = getQuestions();
     }
 
-    echo $questions[$idQuestion][0];
+    $question = $questions[$idQuestion];
+    $question = array('text' => $question[0], 'repA' => $question[1], 'repB' => $question[2], 'repC' => $question[3]);
+
+    echo json_encode($question);
 }
 else{
     echo "fail";
