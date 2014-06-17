@@ -6,15 +6,20 @@
  * Time: 23:58
  */
 
+session_start();
 header("Content-Type: text/plain");
 
 $idAnswer = (isset($_GET["idAnswer"])) ? $_GET["idAnswer"] : NULL;
-
+include_once('functions.php');
 if($idAnswer != null){
-    include_once('functions.php');
-    $fileReader = new \utilities\FileReader;
 
-    $answers = getAnswers();
+    if(isset($_SESSION['answers'])){
+        $answers = $_SESSION['answers'];
+    }
+    else{
+        $fileReader = new \utilities\FileReader;
+        $_SESSION['answers'] = getAnswers();
+    }
 
     echo $answers[$idAnswer];
 }
