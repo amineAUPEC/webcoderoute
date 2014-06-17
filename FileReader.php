@@ -38,4 +38,17 @@ class FileReader {
         return file($file, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);;
     }
 
+    public function countLine($file){
+        $linecount = 0;
+        $handle = fopen($file, "r");
+        while(!feof($handle)){
+            $line = fgets($handle);
+            $linecount++;
+        }
+
+        fclose($handle);
+
+        return $linecount;
+    }
+
 } 
